@@ -1,0 +1,1 @@
+const baseURL = "https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/";
