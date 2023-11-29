@@ -11,14 +11,28 @@ class WeatherService {
     printer: PrettyPrinter(),
   );
 
-  getWeatherData(String provinceName) async {
-    final response = await http.get(Uri.parse('$baseURL/DigitalForecast-$provinceName.xml'));
+  Future<List<City>> getWeatherData(String provinceName) async {
+    final response =
+        await http.get(Uri.parse('$baseURL/DigitalForecast-$provinceName.xml'));
 
     if (response.statusCode == 200) {
-      logger.d("success: ${response.statusCode}" );
-      logger.d(response.body.runtimeType);
-      logger.d(jsonDecode(jsonConverter(response.body))['data']['forecast']['area']);
-      List<dynamic> listCity = jsonDecode(jsonConverter(response.body))['data']['forecast']['area'];
+      // logger.d(jsonDecode(jsonConverter(response.body))['data']['forecast']
+      //         ['area'][0]
+      //     .runtimeType);
+
+      List<dynamic> rawCityList =
+          jsonDecode(jsonConverter(response.body))['data']['forecast']['area'];
+
+      List<City> cityList = [];
+
+      for (var item in rawCityList) {
+        City temp = item['parameter'] != null
+            ? City.fromJsonWithParameter(item)
+            : City.fromJsonWithoutParameter(item);
+        cityList.add(temp);
+      }
+
+      return cityList;
 
     } else {
       throw Exception('Failed to load data');
