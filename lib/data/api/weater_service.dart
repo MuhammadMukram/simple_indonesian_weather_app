@@ -1,24 +1,17 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:simple_indonesian_weather_app/common.dart';
 import 'package:simple_indonesian_weather_app/data/models/city.dart';
 import 'package:xml2json/xml2json.dart';
 import '../const.dart';
-import 'package:logger/logger.dart';
 
 class WeatherService {
-  var logger = Logger(
-    printer: PrettyPrinter(),
-  );
-
   Future<List<City>> getWeatherData(String provinceName) async {
     final response =
         await http.get(Uri.parse('$baseURL/DigitalForecast-$provinceName.xml'));
 
     if (response.statusCode == 200) {
-      // logger.d(jsonDecode(jsonConverter(response.body))['data']['forecast']
-      //         ['area'][0]
-      //     .runtimeType);
 
       List<dynamic> rawCityList =
           jsonDecode(jsonConverter(response.body))['data']['forecast']['area'];
@@ -32,8 +25,9 @@ class WeatherService {
         cityList.add(temp);
       }
 
-      return cityList;
+      // logger.d(cityList[0].cityName);
 
+      return cityList;
     } else {
       throw Exception('Failed to load data');
     }
