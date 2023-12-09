@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:logger/logger.dart';
 
 class ColorConstants {
-  static const kBgColor = Color.fromARGB(255, 225, 198, 191);
+  static const kBgColor = Color(0xFFE1C6BF);
   static const kLightPurpleColor = Color(0xFFabadd7);
   static const kDarkPurpleColor = Color(0xFF5b6b9c);
   static const kLightOrangeColor = Color(0xFFf9b6a7);
@@ -61,3 +61,26 @@ List<String> provinceName = <String>[
   "Sumatera Utara"
 ];
 
+List<String> timeValue = [
+  "00:00 - 05:59",
+  "06:00 - 11:59",
+  "12:00 - 18:59",
+  "18:00 - 23:59"
+];
+
+Map<String, String> weatherCode = {
+  "0" : "Cerah / Clear Skies",
+  "1" : "Cerah Berawan / Partly Cloudy",
+  "2" : "Cerah Berawan / Partly Cloudy",
+  "3" : "Berawan / Mostly Cloudy",
+  "4" : "Berawan Tebal / Overcast",
+  "5" : "Udara Kabur / Haze",
+  "10" : "Asap / Smoke",
+  "45" : "Kabut / Fog",
+  "60" : "Hujan Ringan / Light Rain",
+  "61" : "Hujan Sedang / Rain",
+  "63" : "Hujan Lebat / Heavy Rain",
+  "80" : "Hujan Lokal / Isolated Shower",
+  "95" : "Hujan Petir / Severe Thunderstorm",
+  "97" : "Hujan Petir / Severe Thunderstorm"
+};
