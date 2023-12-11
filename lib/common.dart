@@ -9,7 +9,6 @@ class ColorConstants {
   static const kLightOrangeColor = Color(0xFFf9b6a7);
   static const kDarkOrangeColor = Color(0xFFf59693);
   static const kWhite = Color.fromARGB(255, 255, 255, 255);
-
 }
 
 String mergeString(String str) {
@@ -68,19 +67,61 @@ List<String> timeValue = [
   "18:00 - 23:59"
 ];
 
-Map<String, String> weatherCode = {
-  "0" : "Cerah / Clear Skies",
-  "1" : "Cerah Berawan / Partly Cloudy",
-  "2" : "Cerah Berawan / Partly Cloudy",
-  "3" : "Berawan / Mostly Cloudy",
-  "4" : "Berawan Tebal / Overcast",
-  "5" : "Udara Kabur / Haze",
-  "10" : "Asap / Smoke",
-  "45" : "Kabut / Fog",
-  "60" : "Hujan Ringan / Light Rain",
-  "61" : "Hujan Sedang / Rain",
-  "63" : "Hujan Lebat / Heavy Rain",
-  "80" : "Hujan Lokal / Isolated Shower",
-  "95" : "Hujan Petir / Severe Thunderstorm",
-  "97" : "Hujan Petir / Severe Thunderstorm"
+Map<String, List> weatherCode = {
+  "0": [
+    "Cerah / Clear Skies",
+    "assets/animations/animation1.json",
+  ],
+  "1": [
+    "Cerah Berawan / Partly Cloudy",
+    "assets/animations/animation1.json",
+  ],
+  "2": [
+    "Cerah Berawan / Partly Cloudy",
+    "assets/animations/animation2.json",
+  ],
+  "3": [
+    "Berawan / Mostly Cloudy",
+    "assets/animations/animation3.json",
+  ],
+  "4": [
+    "Berawan Tebal / Overcast",
+    "assets/animations/animation3.json",
+  ],
+  "5": [
+    "Udara Kabur / Haze",
+    "assets/animations/animation6.json",
+  ],
+  "10": [
+    "Asap / Smoke",
+    "assets/animations/animation6.json",
+  ],
+  "45": [
+    "Kabut / Fog",
+    "assets/animations/animation6.json",
+  ],
+  "60": [
+    "Hujan Ringan / Light Rain",
+    "assets/animations/animation4.json",
+  ],
+  "61": [
+    "Hujan Sedang / Rain",
+    "assets/animations/animation4.json",
+  ],
+  "63": [
+    "Hujan Lebat / Heavy Rain",
+    "assets/animations/animation5.json",
+  ],
+  "80": [
+    "Hujan Lokal / Isolated Shower",
+    "assets/animations/animation4.json",
+  ],
+  "95": [
+    "Hujan Petir / Severe Thunderstorm",
+    "assets/animations/animation5.json",
+  ],
+  "97": [
+    "Hujan Petir / Severe Thunderstorm",
+    "assets/animations/animation5.json",
+  ]
 };
