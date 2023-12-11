@@ -30,7 +30,7 @@ class CityDetail extends StatelessWidget {
         backgroundColor: ColorConstants.kBgColor,
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
+            padding: const EdgeInsets.only(top: 30.0, left: 10.0, right: 10.0),
             child: Expanded(
               flex: 1,
               child: Column(
@@ -46,7 +46,7 @@ class CityDetail extends StatelessWidget {
                       fontSize: 24,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 40),
                   Expanded(
                     child: GridView.count(
                       mainAxisSpacing: 5,

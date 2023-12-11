@@ -25,8 +25,6 @@ class WeatherService {
         cityList.add(temp);
       }
 
-      // logger.d(cityList[0].cityName);
-
       return cityList;
     } else {
       throw Exception('Failed to load data');

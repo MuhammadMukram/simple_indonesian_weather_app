@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_indonesian_weather_app/common.dart';
 import 'package:simple_indonesian_weather_app/data/api/weater_service.dart';
 import 'package:simple_indonesian_weather_app/data/models/city.dart';
+import 'package:simple_indonesian_weather_app/presentation/city_detail.dart';
 import 'package:simple_indonesian_weather_app/providers/province_notifier.dart';
 
 Map<String, String> provinceLabels = {};
@@ -112,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                             onChanged: (value) => setState(() {
                               dropdownValue = value;
                               provinceNotifier.setProvinceName(value!);
+                              provinceNotifier.setListCity(List.empty());
                               _fetchCity(
                                   mergeString(provinceNotifier.provinceName));
                             }),
@@ -223,53 +225,67 @@ class CityList extends StatefulWidget {
 }
 
 class _CityListState extends State<CityList> {
+  final _scrollController = ScrollController();
+  
+
   @override
   Widget build(BuildContext context) {
-    widget.listCity.isNotEmpty
-        ? logger.d(widget.listCity[2].cityName)
-        : logger.d("Data null");
+    // widget.listCity.isNotEmpty
+    //     ? logger.d(widget.listCity[2].cityName)
+    //     : logger.d("Data Kosong");
     return (widget.listCity.isNotEmpty
         ? ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Container(
               padding: const EdgeInsets.all(15),
               color: ColorConstants.kWhite,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(
-                    height: 400,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: widget.listCity.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return SingleChildScrollView(
-                          
-                          child: InkWell(
-                            onTap: () {
-                              
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Text(
-                                widget.listCity[index].cityName!,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: ColorConstants.kDarkPurpleColor),
+              child: Scrollbar(
+                controller: _scrollController,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 400,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: widget.listCity.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SingleChildScrollView( 
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context){
+                                  return CityDetail(city: widget.listCity[index]);
+                                }));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Text(
+                                  widget.listCity[index].cityName!,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: ColorConstants.kDarkPurpleColor),
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )
         : const CircularProgressIndicator());
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _scrollController.dispose();
+    super.dispose();
   }
 }
 
